@@ -15,7 +15,7 @@ if (!$conn)
   $location=$_POST['user_request_place'];
   $vehicle_type=$_POST['vehicle_type'];
   $vehicle_problem=$_POST['vehicle_problem'];
-    $sql = "INSERT INTO mech_approved(order_id,user_email,approved_mech_email,mech_mobile_num,vehicle_type,vehicle_problem,location,order_status) VALUES ('$order_id','$user_email','$mech_email','$mech_mobile_num','$vehicle_type','$vehicle_problem','$location','APPROVED')";
+  $sql = "INSERT INTO mech_approved(order_id,user_email,approved_mech_email,mech_mobile_num,vehicle_type,vehicle_problem,location,order_status) VALUES ('$order_id','$user_email','$mech_email','$mech_mobile_num','$vehicle_type','$vehicle_problem','$location','APPROVED')";
 if(mysqli_query($conn,$sql))
 {
 echo "<script>
@@ -29,5 +29,3 @@ echo "error";
 }
 mysqli_close($conn);
 }
-?>
-

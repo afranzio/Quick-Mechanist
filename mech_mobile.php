@@ -1,5 +1,5 @@
 <?php
- $conn=mysqli_connect("localhost","root","","Quick Mechanist");   
+ $conn=mysqli_connect("localhost","root","","repairspot");   
   if (!$conn)
   {
    die(" connection failed".mysqli_connect_error());
