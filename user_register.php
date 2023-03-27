@@ -4,14 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>User Registration</title>
+    <title>Owner Registration</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/styles.css">
 
     <script type="text/javascript" src="https://otpless.com/auth.js"></script>
     <!-- Get user's whatsapp number and name -->
-
-    <title>Sign Up Form by Colorlib</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="./assets/fonts/material-icon/css/material-design-iconic-font.min.css">
@@ -48,18 +46,26 @@
             }
         }
     </script>
+    <?php 
+    session_start();
+    if(isset($_SESSION['name'])){
+        header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
+    }
+    ?>
 </head>
 
 <body>
     <div>
         <div class="navbar" style="background-color: #dee2e6;">
             <div class="w-75 m-auto d-flex justify-content-between align-self-center">
-                <div class="icon align-self-center">
-                    <img src="./assets/images/car-care.png" alt="" srcset="" class="logoImg">
-                    <h5>
-                        Mechanist
-                    </h5>
-                </div>
+                <a href="/" style="text-decoration: none; color: rgba(33, 37, 41, 0.75);">
+                    <div class="icon align-self-center">
+                        <img src="./assets/images/car-care.png" alt="" srcset="" class="logoImg">
+                        <h5>
+                            Mechanist
+                        </h5>
+                    </div>
+                </a>
                 <div class="menu">
                     <ul class="mb-0">
                         <li><a href="/"> HOME</a></li>
@@ -74,21 +80,21 @@
             <div class="container">
                 <div class="signup-content">
                     <div class="signup-form">
-                        <h2 class="form-title">Owner - Sign up</h2>
+                        <h2 class="form-title">Owner</h2>
                         <form name="my" method="POST" action="user_register_back.php" onclick="return ValidateForm()">
                             <div class="form-group">
                                 <input type="text" name="name" id="name" placeholder="Name" />
                             </div>
                             <div class="form-group">
                                 <div class="d-flex">
-                                    <input type="tel" name="email" id="email" placeholder="Phone Number" />
+                                    <input type="tel" name="mob_num" id="email" placeholder="Phone Number" />
                                     <button type="button" class="btn btn-secondary" style="font-size: 8px;">
                                         Get OTP
                                     </button>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="password" name="pass" id="pass" placeholder="OTP" />
+                                <input type="password" name="otp" id="pass" placeholder="OTP" />
                             </div>
                             <div class="form-group form-button">
                                 <input class="form-submit" type="submit" id="btnsubmit" name="user_form_submit" value="Register" onclick="return Validate()" />
@@ -98,9 +104,8 @@
                     <div class="signup-image">
                         <figure>
                             <img src="./assets/images/undraw_automobile_repair.svg" alt="sing up image">
-                            <!-- <img src="./assets/images/signup-image.jpg" alt="sing up image"> -->
                         </figure>
-                        <a href="#" class="signup-image-link">I am already member</a>
+                        <a href="https://localhost/Quick-Mechanist/mech_register.php" class="signup-image-link">Register as Mechanic</a>
                     </div>
                 </div>
             </div>

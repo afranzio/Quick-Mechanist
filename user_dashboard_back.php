@@ -10,17 +10,18 @@
   else{    
   if (isset($_POST['submit']))
   {    
-      $email=$_POST['email'];
+      $name=$_POST['name'];
       $location=$_POST['location'];
       $vehicle=$_POST['vehicle_type'];
       $vehicle_problem=$_POST['vehicle_problem'];
       $latitude=$_POST['latitude'];
       $longitude=$_POST['longitude'];
-      $query="INSERT INTO user_booking_request(email,user_request_place,vehicle_type,vehicle_problem,request_status,latitude,longitude) VALUES ('$email','$location','$vehicle','$vehicle_problem','PENDING','$latitude','$longitude')";
+      $query="INSERT INTO user_booking_request(name,user_request_place,vehicle_type,vehicle_problem,request_status,latitude,longitude) VALUES ('$name','$location','$vehicle','$vehicle_problem','PENDING','$latitude','$longitude')";
 
       if (mysqli_query($conn,$query))
       {
           echo "request success";
+          header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
 
       }
 

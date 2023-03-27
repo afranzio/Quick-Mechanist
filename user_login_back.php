@@ -1,7 +1,7 @@
 <?php
  //db connection
 
- $conn=mysqli_connect("localhost","root","","repairspot");   
+ $conn=mysqli_connect("localhost","root","","repairspot");
   if (!$conn)
   {
    die(" connection failed".mysqli_connect_error());

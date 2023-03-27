@@ -9,23 +9,29 @@ if (!$conn)
   die("Connection failed".mysqli_connect_error());
 }
 else{
-$f_name=$_POST['user_first_name'];
-$l_name=$_POST['user_last_name'];
-$dob=$_POST['user_dob'];
-$house_no=$_POST['user_house_no'];
-$street=$_POST['user_street'];
-$village_city=$_POST['user_village_city'];
-$district=$_POST['user_district'];
-$email=$_POST['user_email'];
-$mob_num=$_POST['user_mobile'];
-$password=$_POST['user_password'];
+$name = $_POST['name'];
+$mob_num = $_POST['mob_num'];
+$otp = rand(1000000,100);
+$user_type = 'owner';
+$latitude = '0';
+$longitude = '0';
 
-$sql = "INSERT INTO user_details(f_name,l_name,dob,house_no,street,village_city,district,email,mob_num,password)
-VALUES ('$f_name','$l_name','$dob','$house_no','$street','$village_city','$district','$email','$mob_num','$password')";
+// name,otp,mob_num,latitude,longitude
+
+$sql = "INSERT INTO user_details(name,otp,mob_num,latitude,longitude,user_type)
+VALUES ('$name', '$otp', '$mob_num', '$latitude', '$longitude', '$user_type')";
 
 if(mysqli_query($conn,$sql))
 {
-echo "success";
+// echo "success";
+header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
+session_start();
+$_SESSION["name"] = $name;
+$_SESSION["mob_num"] = $mob_num;
+$_SESSION["otp"] = $otp;
+$_SESSION["user_type"] = $user_type;
+$_SESSION["latitude"] = $latitude;
+$_SESSION["longitude"] = $longitude;
 }
 else
 {
@@ -34,4 +40,3 @@ echo "error";
 mysqli_close($conn);
 }
 }
-?>
