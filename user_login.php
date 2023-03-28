@@ -55,7 +55,24 @@
     <?php
     session_start();
     if (isset($_SESSION['name'])) {
-        header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
+        // Create connection
+        $conn = mysqli_connect("localhost", "root", "", "repairspot");
+        // Check connection
+        if (!$conn) {
+            die("Connection failed" . mysqli_connect_error());
+        }
+        $name = $_SESSION['name'];
+        $sql = "SELECT * FROM user_details where mob_num='".$_SESSION['mob_num']."'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
+        }else{
+            Session_start();
+            Session_destroy();
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
+        $conn->close();
     }
     ?>
 </head>

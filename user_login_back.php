@@ -10,7 +10,6 @@
 
    //if submit triggers..
     
-   echo "submit";
   if (isset($_POST['submit']))
    {
     $mob_num=$_POST['mob_num'];
@@ -24,7 +23,6 @@
 
     if (mysqli_num_rows($result)>0)
     {
-      echo "found";
       header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
       session_start();
       $_SESSION["name"] = $row['name'];
@@ -39,7 +37,7 @@
 
    else
    {
-    echo "invalid username or password";
+    echo "Invalid User";
     mysqli_close($conn);
    }
 

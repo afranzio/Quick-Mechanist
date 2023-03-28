@@ -50,9 +50,27 @@
     <?php
     session_start();
     if (isset($_SESSION['name'])) {
-        header("Location: https://localhost/Quick-Mechanist/mech_dashboard.php");
+        // Create connection
+        $conn = mysqli_connect("localhost", "root", "", "repairspot");
+        // Check connection
+        if (!$conn) {
+            die("Connection failed" . mysqli_connect_error());
+        }
+        $name = $_SESSION['name'];
+        $sql = "SELECT name FROM mech_details where name='".$_SESSION['name']."'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            header("Location: https://localhost/Quick-Mechanist/mech_dashboard.php");
+        }else{
+            Session_start();
+            Session_destroy();
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
+        $conn->close();
     }
     ?>
+    
 </head>
 
 <body>
@@ -78,7 +96,7 @@
                                 <input type="password" name="otp" id="pass" placeholder="OTP" />
                             </div>
                             <div class="form-group form-button">
-                                <input class="form-submit" type="submit" value="Login" />
+                                <input class="form-submit" name="submit" type="submit" value="Login" />
                             </div>
                         </form>
                     </div>
