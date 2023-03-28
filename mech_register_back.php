@@ -9,25 +9,31 @@ if (!$conn)
   die("Connection failed".mysqli_connect_error());
 }
 else{
-$f_name=$_POST['mech_first_name'];
-$l_name=$_POST['mech_last_name'];
-$dob=$_POST['mech_dob'];
-$service_type=$_POST['mech_service'];
-$service_type_others=$_POST['mech_other_service'];
-$house_no=$_POST['mech_house_no'];
-$street=$_POST['mech_street'];
-$village_city=$_POST['mech_village_city'];
-$district=$_POST['mech_district'];
-$email=$_POST['mech_email'];
-$mob_num=$_POST['mech_mobile'];
-$password=$_POST['mech_password'];
 
-$sql = "INSERT INTO mech_details(f_name,l_name,dob,service_type,service_type_others,house_no,street,village_city,district,email,mob_num,password)
-VALUES ('$f_name','$l_name','$dob','$service_type','$service_type_others','$house_no','$street','$village_city','$district','$email','$mob_num','$password')";
+$name = $_POST['name'];
+$service_type = $_POST['mech_service'];
+$service_type_others = $_POST['mech_other_service'];
+$mob_num = $_POST['mob_num'];
+$otp = $_POST['otp'];
+$latitude = $_POST['latitude'];
+$longitude = $_POST['longitude'];
+
+
+$sql = "INSERT INTO mech_details(name, service_type, service_type_others, mob_num, otp, latitude, longitude)
+VALUES ('$name', '$service_type', '$service_type_others', '$mob_num', '$otp', '$latitude', '$longitude')";
 
 if(mysqli_query($conn,$sql))
 {
-echo "success";
+// echo "success";
+header("Location: https://localhost/Quick-Mechanist/mech_dashboard.php");
+session_start();
+$_SESSION['name']=$name;
+$_SESSION['service_type']=$service_type;
+$_SESSION['service_type_others']=$service_type_others;
+$_SESSION['mob_num']=$mob_num;
+$_SESSION['otp']=$otp;
+$_SESSION['latitude']=$latitude;
+$_SESSION['longitude']=$longitude;
 }
 else
 {
@@ -36,4 +42,3 @@ echo "error";
 mysqli_close($conn);
 }
 }
-?>

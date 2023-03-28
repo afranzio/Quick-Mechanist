@@ -12,9 +12,6 @@ else{
 $name = $_POST['name'];
 $mob_num = $_POST['mob_num'];
 $otp = rand(1000000,100);
-$user_type = 'owner';
-$latitude = '0';
-$longitude = '0';
 
 // name,otp,mob_num,latitude,longitude
 
@@ -29,9 +26,6 @@ session_start();
 $_SESSION["name"] = $name;
 $_SESSION["mob_num"] = $mob_num;
 $_SESSION["otp"] = $otp;
-$_SESSION["user_type"] = $user_type;
-$_SESSION["latitude"] = $latitude;
-$_SESSION["longitude"] = $longitude;
 }
 else
 {

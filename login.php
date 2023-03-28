@@ -3,6 +3,7 @@
 <head>
 	<title>Quick Mechanist</title>
 	<link rel="stylesheet" type="text/css" href="file.css">
+	<link rel="shortcut icon" href="./assets/images/car-care.png" type="image/x-icon"/>
 </head>
 <body>
 	<div class="cointainer">

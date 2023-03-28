@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Owner Signin</title>
 
+    <link rel="shortcut icon" href="./assets/images/car-care.png" type="image/x-icon"/>
+
     <script type="text/javascript" src="https://otpless.com/auth.js"></script>
     <!-- Get user's whatsapp number and name -->
 
@@ -81,7 +83,7 @@
                                 <input type="password" name="otp" id="pass" placeholder="OTP" />
                             </div>
                             <div class="form-group form-button">
-                                <input class="form-submit" type="submit" value="Login" />
+                                <input class="form-submit" name="submit" type="submit" value="Login" />
                             </div>
                         </form>
                     </div>

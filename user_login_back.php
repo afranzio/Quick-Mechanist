@@ -10,12 +10,13 @@
 
    //if submit triggers..
     
+   echo "submit";
   if (isset($_POST['submit']))
    {
-    $username=$_POST['name'];
-    $password=$_POST['password'];
-    $query="select * from user_details where email='$username' and password='$password'";
+    $mob_num=$_POST['mob_num'];
+    $query="select * from user_details where mob_num='$mob_num'";
     $result=mysqli_query($conn,$query);
+    $row= mysqli_fetch_array($result);
 
    //checking email,pass is present in db... 
     
@@ -23,7 +24,15 @@
 
     if (mysqli_num_rows($result)>0)
     {
-     include 'user_dashboard.php';
+      echo "found";
+      header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
+      session_start();
+      $_SESSION["name"] = $row['name'];
+      $_SESSION["mob_num"] = $row['mob_num'];
+      $_SESSION["otp"] = $row['otp'];
+      $_SESSION["user_type"] = $row['user_type'];
+      $_SESSION["latitude"] = $row['latitude'];
+      $_SESSION["longitude"] = $row['longitude'];
     }
 
    //if not present in db

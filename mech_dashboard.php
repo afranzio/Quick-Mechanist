@@ -1,57 +1,70 @@
 <?php
-  session_cache_limiter('private, must-revalidate');
+session_cache_limiter('private, must-revalidate');
 session_cache_expire(60);
-   session_start();
-   ?>
-<html>
-<head>
-	<title>dashboard</title>
-	<link rel="stylesheet" type="text/css" href="file.css">
-	<script type="text/javascript">
-		alert('Login Success');
-	</script>
-</head>
-<body>
-	<div class="cointainer">
-		<div class="logo">
-			<h3>Quick Mechanist</h3>
-			<h3>YOUR Email ID:</h3><b><?php echo $_POST['name'];?></b>
-			<div class="body">
-				         <H2>CURRENT ORDERS</H2>
-				         <div>
-				         	<form action="mech_approved.php" method="POST"><input type="hidden" name="mech_email" value="<?php echo $_POST['name']; ?>"><input type="hidden" name="mech_mobile_num" VALUE="<?php include 'mech_mobile.php';?>">
-				         <?php
-{
-// Create connection
-$conn = mysqli_connect("localhost","root","","repairspot");
-// Check connection
-if (!$conn) 
-{
-  die("Connection failed".mysqli_connect_error());
-}
-$sql = "SELECT last_updated,order_id,email,user_request_place,vehicle_type,vehicle_problem,request_status FROM user_booking_request WHERE request_status='PENDING'";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-  echo "<table><tr><th>ORDER ID</th><th>DATE & TIME</th><th>CUSTOMER EMAIL</th><th>LOCATION</th><th>VEHICLE TYPE</th><th>VEHICLE PROBLEM</th></tr>";
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
-    echo "<tr><td><input type='text' name='order_id'value='".$row["order_id"]."'readonly></td><td><input type='text' name='last_updated' value='".$row["last_updated"]."' readonly></td><td><input type='text' name='user_email' value='".$row["email"]."' readonly></td><td><input type='text' name='user_request_place' value='".$row["user_request_place"]."' readonly></td><td><input type='text' name='vehicle_type' value='".$row["vehicle_type"]."' readonly></td><td><input type='text' name='vehicle_problem' value='".$row["vehicle_problem"]."' readonly></td><td><input type='submit' name='approve' value='approve'></td></tr>";
-  }
-  echo "</table>";
-} else {
-  echo "0 results";
-}
-$conn->close();
-}
+session_start();
 ?>
-</form>
-				<div class="content">
-					    
-				</div>
+<html>
+
+<head>
+	<title>Mechanic Dashboard</title>
+	<link rel="shortcut icon" href="./assets/images/car-care.png" type="image/x-icon"/>
+	<!-- Styles and Fonts -->
+	<!-- Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="./assets/css/styles.css">
+	<!-- Font Icon -->
+	<link rel="stylesheet" href="./assets/fonts/material-icon/css/material-design-iconic-font.min.css">
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="./assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="./assets/css/file.css">
+	
+</head>
+
+<body>
+	<?php
+	include('components/navbar.php');
+	?>
+	<div class="blur">
+		<h5 class="my-3">Welcome <?Php echo $_SESSION['name']; ?>!</h5>
+		<div class="cur-req">
+			<h2>CURRENT ORDERS</h2>
+			<form action="mech_approved.php" method="POST"><input type="hidden" name="mech_email" value="<?php echo $_SESSION['name']; ?>"><input type="hidden" name="mech_mobile_num" VALUE="<?php include 'mech_mobile.php'; ?>">
+				<?php {
+					// Create connection
+					$conn = mysqli_connect("localhost", "root", "", "repairspot");
+					// Check connection
+					if (!$conn) {
+						die("Connection failed" . mysqli_connect_error());
+					}
+					$sql = "SELECT last_updated,order_id,name,user_request_place,vehicle_type,vehicle_problem,request_status,latitude,longitude FROM user_booking_request WHERE request_status='PENDING'";
+					$result = $conn->query($sql);
+
+					if ($result && $result->num_rows > 0) {
+						echo "<table><tr><th>ORDER ID</th><th>DATE & TIME</th><th>CUSTOMER NAME</th><th>LOCATION</th><th>VEHICLE TYPE</th><th>VEHICLE PROBLEM</th><th>Google Map</th></tr>";
+						// output data of each row
+						while ($row = $result->fetch_assoc()) {
+							if ($row) {
+								$gmapwith = "https://www.google.com/maps/dir/?api=1&origin=".$_SESSION['latitude'].",".$_SESSION['longitude']."&destination=" . $row['latitude'] . "," . $row['longitude'] . "";
+								echo "<tr><td>" . $row["order_id"] . "</td><td>" . $row["last_updated"] . "</td><td>" . $row["name"] . "</td><td>" . $row["user_request_place"] . "</td><td>" . $row["vehicle_type"] . "</td><td>" . $row["vehicle_problem"] . "</td><td><a href='".$gmapwith."' target=_blank> Google Map </a></td><td><input type='submit' class='btn btn-success rounded-0' name='approve' value='Approve'></td></tr>";
+							}
+						}
+						echo "</table>";
+					} else {
+						echo "0 results";
+					}
+					$conn->close();
+				}
+				?>
+			</form>
+			<div class="content">
+
 			</div>
 		</div>
 	</div>
-
+	<?php
+	include('components/justFooter.php');
+	?>
 </body>
+
 </html>

@@ -14,6 +14,11 @@
                 <li><a href=""> SERVICES</a></li>
                 <li><a href=""> CONTACT</a></li>
                 <li><a href=""> SEARCH</a></li>
+                <?php
+                if (isset($_SESSION['name'])) {
+                    echo '<li><a href="https://localhost/Quick-Mechanist/auth/logout.php">LOGOUT</a></li>';
+                }
+                ?>
             </ul>
         </div>
     </div>

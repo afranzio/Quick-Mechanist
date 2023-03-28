@@ -108,12 +108,13 @@
 			            <select onchange="checkvalue(this.value)" id="mech_service_type" required name="mech_service" required>
 			            	 <option value="stype">Select Service Type</option>
 				             <option value="bike_mechanic">
-		                                                 Bike Mechanic
+								Bike Mechanic
 				             </option>
                              <option value="car_mechanic">
-                                                         Car Mechanic
+								Car Mechanic
                              </option>
-                             <option value="others">      others
+                             <option value="others">      
+								Others
                              </option>
                         </select>
                     </td>
