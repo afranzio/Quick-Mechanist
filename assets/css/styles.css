@@ -150,7 +150,10 @@
 
  @media only screen and (max-width: 600px) {
     .navbar, .navBarWidth{
-       width: 100%;
+       width: 100% !important;
+    }
+    .navBarWidth .headerIcon{
+      display: none;
     }
     .icon{
        display: none;
@@ -169,5 +172,8 @@
 
     .link button{
       height: 75px;
+    }
+    .menu, .menu ul{
+      width: 100%;
     }
  }

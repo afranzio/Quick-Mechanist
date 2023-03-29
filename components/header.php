@@ -13,7 +13,7 @@
     <div class="landerMain">
         <div class="navbar" style="background-color: #dee2e6;">
             <div class="navBarWidth m-auto d-flex justify-content-between align-self-center">
-                <a href="/" style="text-decoration: none; color: rgba(33, 37, 41, 0.75);">
+                <a class="headerIcon" href="/" style="text-decoration: none; color: rgba(33, 37, 41, 0.75);">
                     <div class="icon align-self-center">
                         <img src="./assets/images/car-care.png" alt="" srcset="" class="logoImg">
                         <h5>

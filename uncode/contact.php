@@ -13,8 +13,6 @@
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../assets/css/styles.css">
     <!-- Font Icon -->
     <link rel="stylesheet" href="../assets/fonts/material-icon/css/material-design-iconic-font.min.css">
     <!-- Main CSS -->
@@ -24,6 +22,9 @@
     <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="../assets/vendor/venobox/venobox.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/styles.css">
 
     <style>
         .bx{
