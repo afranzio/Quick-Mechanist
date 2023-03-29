@@ -24,9 +24,8 @@
                 <div class="menu">
                     <ul class="mb-0">
                         <li><a href="/"> HOME</a></li>
-                        <li><a href=""> SERVICES</a></li>
-                        <li><a href=""> CONTACT</a></li>
-                        <li><a href=""> SEARCH</a></li>
+                        <li><a href="/Quick-Mechanist/uncode/services.php"> SERVICES</a></li>
+                        <li><a href="/Quick-Mechanist/uncode/contact.php"> CONTACT</a></li>
                         <?php
                         session_start();
                         if (isset($_SESSION['name'])) {
