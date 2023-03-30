@@ -12,6 +12,7 @@ if (!$_SESSION['name']) {
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="./assets/images/car-care.png" type="image/x-icon"/>
+  <title>Owner</title>
   <!-- Styles and Fonts -->
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
@@ -203,8 +204,7 @@ if (!$_SESSION['name']) {
               echo "<table><tr><th>ORDER ID</th><th>DATE&TIME</th><th>LANDMARK</th><th>VEHICLE TYPE</th><th>VEHICLE PROBLEM</th></tr>";
               // output data of each row
               while ($row = $result->fetch_assoc()) {
-                // echo "<tr><td><input type='text' name='order_id' value='" . $row["order_id"] . "' readonly></td><td>" . $row["last_updated"] . "</td><td>" . $row["user_request_place"] . "</td><td>" . $row["vehicle_type"] . "</td><td>" . $row["vehicle_problem"] . "</td><td><input type='submit' class='btn btn-danger rounded-0' name='cancel' value='Cancel'></td></tr>";
-                echo "<tr><td>" . $row["order_id"] . "</td><td>" . $row["last_updated"] . "</td><td>" . $row["user_request_place"] . "</td><td>" . $row["vehicle_type"] . "</td><td>" . $row["vehicle_problem"] . "</td><td><input type='submit' class='btn btn-danger rounded-0' name='cancel' value='Cancel'></td></tr>";
+                echo "<tr><td><input type='text' name='order_id' value='" . $row["order_id"] . "' readonly></td><td>" . $row["last_updated"] . "</td><td>" . $row["user_request_place"] . "</td><td>" . $row["vehicle_type"] . "</td><td>" . $row["vehicle_problem"] . "</td><td><input type='submit' class='btn btn-danger rounded-0' name='cancel' value='Cancel'></td></tr>";
               }
               echo "</table>";
             } else {
@@ -215,7 +215,7 @@ if (!$_SESSION['name']) {
           ?>
         </form>
       </div>
-      <div class="approved-orders">
+      <div class="approved-orders cur-req">
         <h2>APPROVED ORDERS</h2>
         <form method="POST" action="">
           <?php {
@@ -226,14 +226,14 @@ if (!$_SESSION['name']) {
               die("Connection failed" . mysqli_connect_error());
             }
             $name = $_SESSION['name'];
-            $sql = "SELECT order_id,approved_mech_email,mech_mobile_num,order_status,approved_datetime FROM mech_approved where user_name='$name'";
+            $sql = "SELECT order_id,approved_mech_name,mech_mobile_num,order_status,approved_datetime FROM mech_approved where user_name='$name'";
             $result = $conn->query($sql);
   
             if ($result && $result->num_rows > 0) {
               echo "<table><tr><th>ORDER ID</th><th>MECHANIC EMAIL</th><th>MECHANIC MOBILE NUM</th><th>ORDER STATUS</th><th>APPROVED DATE&TIME</th></tr>";
               // output data of each row
               while ($row = $result->fetch_assoc()) {
-                echo "<tr><td><input type='text' name='order_id' value='" . $row["order_id"] . "' readonly></td><td>" . $row["approved_mech_email"] . "</td><td>" . $row['mech_mobile_num'] . "</td><td>" . $row["order_status"] . "</td><td>" . $row["approved_datetime"] . "</td></tr>";
+                echo "<tr><td>" . $row["order_id"] . "</td><td>" . $row["approved_mech_name"] . "</td><td>" . $row['mech_mobile_num'] . "</td><td>" . $row["order_status"] . "</td><td>" . $row["approved_datetime"] . "</td></tr>";
               }
               echo "</table>";
             } else {

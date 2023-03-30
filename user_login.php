@@ -68,7 +68,9 @@
         if ($result->num_rows > 0) {
             header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
         }else{
-            Session_start();
+            if(session_id() == '') {
+                session_start();
+            }
             Session_destroy();
             header('Location: ' . $_SERVER['HTTP_REFERER']);
         }

@@ -10,6 +10,8 @@ if (!$_SESSION['name']) {
 
 <head>
 	<title>Mechanic Dashboard</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<link rel="shortcut icon" href="./assets/images/car-care.png" type="image/x-icon"/>
 	<!-- Styles and Fonts -->
 	<!-- Bootstrap -->
@@ -44,7 +46,8 @@ if (!$_SESSION['name']) {
 		<h5 class="my-3">Welcome <?Php echo $_SESSION['name']; ?>!</h5>
 		<div class="cur-req">
 			<h2>CURRENT ORDERS</h2>
-			<form action="mech_approved.php" method="POST"><input type="hidden" name="mech_email" value="<?php echo $_SESSION['name']; ?>">
+			<form action="mech_approved.php" method="POST">
+				<input type="hidden" name="mech_email" value="<?php echo $_SESSION['name']; ?>">
 				<input type="hidden" name="mech_mobile_num" VALUE="<?Php echo $_SESSION['mob_num']; ?>">
 				<?php {
 					// Create connection
@@ -53,7 +56,8 @@ if (!$_SESSION['name']) {
 					if (!$conn) {
 						die("Connection failed" . mysqli_connect_error());
 					}
-					$sql = "SELECT last_updated,order_id,name,user_request_place,vehicle_type,vehicle_problem,request_status,latitude,longitude FROM user_booking_request WHERE request_status='PENDING'";
+					$sql = "SELECT last_updated,order_id,name,user_request_place,vehicle_type,vehicle_problem,request_status,latitude,longitude FROM user_booking_request";
+					// $sql = "SELECT last_updated,order_id,name,user_request_place,vehicle_type,vehicle_problem,request_status,latitude,longitude FROM user_booking_request WHERE request_status='PENDING'";
 					$result = $conn->query($sql);
 
 					if ($result && $result->num_rows > 0) {
@@ -62,7 +66,8 @@ if (!$_SESSION['name']) {
 						while ($row = $result->fetch_assoc()) {
 							if ($row) {
 								$gmapwith = "https://www.google.com/maps/dir/?api=1&origin=".$_SESSION['latitude'].",".$_SESSION['longitude']."&destination=" . $row['latitude'] . "," . $row['longitude'] . "";
-								echo "<tr> <td><input class='tableInput' type='text' name='order_id' value='" . $row["order_id"] . "' /></td> <td>" . $row["last_updated"] . "</td> <td><input class='tableInput' type='text' name='user_name' value='" . $row["name"] . "' /></td> <td><input class='tableInput' type='text' name='user_request_place' value='" . $row["user_request_place"] . "' /></td> <td><input class='tableInput' type='text' name='vehicle_type' value='" . $row["vehicle_type"] . "' /></td> <td><input class='tableInput' type='text' name='vehicle_problem' value='" . $row["vehicle_problem"] . "' /></td> <td><a href='".$gmapwith."' target=_blank> Google Map </a></td> <td><input type='submit' class='btn btn-success rounded-0' name='approve' value='Approve'></td> </tr>";
+								$actionButton = $row["request_status"] == 'APPROVED'? "<input type='submit' class='btn btn-danger rounded-0' name='mech_cancel_action' value='Cancel'>" : "<input type='submit' class='btn btn-success rounded-0' name='mech_approve_action' value='Approve'>";
+								echo "<tr> <td><input class='tableInput' type='text' name='order_id' value='" . $row["order_id"] . "' /></td> <td>" . $row["last_updated"] . "</td> <td><input class='tableInput' type='text' name='user_name' value='" . $row["name"] . "' /></td> <td><input class='tableInput' type='text' name='user_request_place' value='" . $row["user_request_place"] . "' /></td> <td><input class='tableInput' type='text' name='vehicle_type' value='" . $row["vehicle_type"] . "' /></td> <td><input class='tableInput' type='text' name='vehicle_problem' value='" . $row["vehicle_problem"] . "' /></td> <td><a href='".$gmapwith."' target=_blank> Google Map </a></td> <td>". $actionButton ."</td> </tr>";
 							}
 						}
 						echo "</table>";

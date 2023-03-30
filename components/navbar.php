@@ -14,6 +14,9 @@
                 <li><a href="/Quick-Mechanist/uncode/services.php"> SERVICES</a></li>
                 <li><a href="/Quick-Mechanist/uncode/contact.php"> CONTACT</a></li>
                 <?php
+                if(session_id() == '') {
+                    session_start();
+                }
                 if (isset($_SESSION['name'])) {
                     echo '<li><a href="https://localhost/Quick-Mechanist/auth/logout.php">LOGOUT</a></li>';
                 }

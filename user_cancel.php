@@ -11,5 +11,6 @@ if (!$conn)
 if (mysqli_query($conn,$sql)) 
 {
   echo "order id".$order_id."is cancelled successfull";
+  header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
 }
 ?>
