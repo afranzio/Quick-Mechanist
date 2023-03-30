@@ -56,7 +56,7 @@ if (!$_SESSION['name']) {
 					if (!$conn) {
 						die("Connection failed" . mysqli_connect_error());
 					}
-					$sql = "SELECT last_updated,order_id,name,user_request_place,vehicle_type,vehicle_problem,request_status,latitude,longitude FROM user_booking_request";
+					$sql = "SELECT last_updated,order_id,name,user_request_place,vehicle_type,vehicle_problem,request_status,latitude,longitude FROM user_booking_request WHERE request_status='PENDING'";
 					// $sql = "SELECT last_updated,order_id,name,user_request_place,vehicle_type,vehicle_problem,request_status,latitude,longitude FROM user_booking_request WHERE request_status='PENDING'";
 					$result = $conn->query($sql);
 
