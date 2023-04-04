@@ -88,7 +88,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="d-flex">
-                                    <input type="tel" name="mob_num" id="email" placeholder="Phone Number" />
+                                    <input type="tel" name="mob_num" id="email" maxlength="10" placeholder="Phone Number" />
                                     <button type="button" class="btn btn-secondary" style="font-size: 8px;">
                                         Get OTP
                                     </button>
