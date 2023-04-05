@@ -9,22 +9,11 @@
     <link rel="stylesheet" href="./assets/css/styles.css">
     <link rel="shortcut icon" href="./assets/images/car-care.png" type="image/x-icon"/>
 
-    <script type="text/javascript" src="https://otpless.com/auth.js"></script>
-    <!-- Get user's whatsapp number and name -->
-
     <!-- Font Icon -->
     <link rel="stylesheet" href="./assets/fonts/material-icon/css/material-design-iconic-font.min.css">
 
     <!-- Main css -->
     <link rel="stylesheet" href="./assets/css/style.css">
-
-    <script type="text/javascript">
-        function otpless(otplessUser) {
-            var waName = otplessUser.waName;
-            var waNumber = otplessUser.waNumber;
-            // Signup/signin the user and redirect to next page
-        }
-    </script>
 
     <script type="text/javascript">
         //password match

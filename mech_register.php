@@ -69,6 +69,13 @@
 		}
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.js" integrity="sha512-6DC1eE3AWg1bgitkoaRM1lhY98PxbMIbhgYCGV107aZlyzzvaWCW1nJW2vDuYQm06hXrW0As6OGKcIaAVWnHJw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <style>
+        .phError, .otpError{
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -109,15 +116,19 @@
 										Get OTP
 									</button>
 								</div>
+								<p class="phError" style="color:red; margin-left: 20px; font-size: 12px; margin-top: 5px;"></p>
 							</div>
 							<div class="form-group">
 								<input type="password" name="otp" id="pass" placeholder="OTP" />
+								<p class="otpError" style="color:red; margin-left: 20px; font-size: 12px; margin-top: 5px;"></p>
 							</div>
 							<input type="text" hidden name="latitude" id="latitude">
 							<input type="text" hidden name="longitude" id="longitude">
 							<div class="form-group form-button">
-								<input class="form-submit" type="submit" id="btnsubmit" name="mech_form_submit" value="Register" onclick="return Validate()" />
+								<!-- <input class="form-submit" type="submit" id="btnsubmit" name="mech_form_submit" value="Register" onclick="return Validate()" /> -->
+								<input class="form-submit" type="button" value="Register" onclick="return verifyOTP()" />
 							</div>
+							<input class="form-submit" id="verifiedOTP" name="verifiedOTP" hidden="true"/>
 						</form>
 					</div>
 					<div class="signup-image">
@@ -153,6 +164,66 @@
 		document.getElementById("latitude").value = latitude;
 		document.getElementById("longitude").value = longitude;
 	}
+</script>
+
+<script>
+    var otp = generateOTP();
+    function sendOTP() {
+        $(".phError").html("").hide();
+        var name = $("#name").val();
+        var number = $("#mob_num").val();
+        if (number.length == 10 && number != null) {
+            var xhr = new XMLHttpRequest(),
+                body = JSON.stringify({
+                    "messages": [{
+                            "channel": "whatsapp",
+                            "to": "91"+number,
+                            "content": `Hello ${name}! - Here's OTP for Quick Mechanist. Please don't share the OTP - ${otp}`
+                        },
+                        {
+                            "channel": "sms",
+                            "to": "91"+number,
+                            "content": `Hello ${name}! - Here's OTP for Quick Mechanist. Please don't share the OTP - ${otp}`
+                        }
+                    ]
+                });
+            xhr.open('POST', 'https://platform.clickatell.com/v1/message', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('Authorization', 'aGvBybhRR0eNevM7QqSU1g==');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log('success');
+                    alert("OTP Sent Successfully!!")
+                }
+            };
+            xhr.send(body);
+        } else {
+            $(".phError").html('Please enter a valid number!')
+            $(".phError").show();
+        }
+    }
+
+    function generateOTP() {
+        var digits = '0123456789';
+        let OTP = '';
+        for (let i = 0; i < 4; i++) {
+            OTP += digits[Math.floor(Math.random() * 10)];
+        }
+        return OTP;
+    }
+
+    function verifyOTP() {
+        $(".otpError").html("").hide();
+        var enteredOtp = $("#pass").val();
+        if (enteredOtp == otp) {
+            document.getElementById("verifiedOTP").value = otp;
+            document.getElementById("user_registration_form").submit();
+        } else {
+            $(".otpError").html('Invalid OTP!')
+            $(".otpError").show();
+            return false;
+        }
+    }
 </script>
 
 </html>

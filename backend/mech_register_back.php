@@ -18,27 +18,31 @@ $otp = rand(1111,9999);
 $latitude = $_POST['latitude'];
 $longitude = $_POST['longitude'];
 
+$validationSql = "SELECT * FROM mech_details WHERE name=$name AND mob_num=$mob_num";
+$result = $conn->query($validationSql);
+  if ($result) {  
+    if ($result->num_rows == 1) {
+      header("Location: https://localhost/Quick-Mechanist/index.php");
+    }
+  }else{
+    $sql = "INSERT INTO mech_details(name, service_type, service_type_others, mob_num, otp, latitude, longitude)
+    VALUES ('$name', '$service_type', '$service_type_others', '$mob_num', '$otp', '$latitude', '$longitude')";
 
-$sql = "INSERT INTO mech_details(name, service_type, service_type_others, mob_num, otp, latitude, longitude)
-VALUES ('$name', '$service_type', '$service_type_others', '$mob_num', '$otp', '$latitude', '$longitude')";
-
-if(mysqli_query($conn,$sql))
-{
-// echo "success";
-header("Location: https://localhost/Quick-Mechanist/mech_dashboard.php");
-session_start();
-$_SESSION['name']=$name;
-$_SESSION['service_type']=$service_type;
-$_SESSION['service_type_others']=$service_type_others;
-$_SESSION['mob_num']=$mob_num;
-$_SESSION['otp']=$otp;
-$_SESSION['latitude']=$latitude;
-$_SESSION['longitude']=$longitude;
-}
-else
-{
-echo "error";
-}
-mysqli_close($conn);
-}
+    if(mysqli_query($conn,$sql)){
+      // echo "success";
+      header("Location: https://localhost/Quick-Mechanist/mech_dashboard.php");
+      session_start();
+      $_SESSION['name']=$name;
+      $_SESSION['service_type']=$service_type;
+      $_SESSION['service_type_others']=$service_type_others;
+      $_SESSION['mob_num']=$mob_num;
+      $_SESSION['otp']=$otp;
+      $_SESSION['latitude']=$latitude;
+      $_SESSION['longitude']=$longitude;
+    }else{
+      echo "error";
+    }
+    mysqli_close($conn);
+    }
+  }
 }

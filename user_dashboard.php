@@ -288,19 +288,6 @@ if (!$_SESSION['name']) {
     document.getElementById("myForm").style.display = "none";
     document.getElementById("blurBox").style.display = "none";
   }
-  /*var x = document.getElementById("demo");
-
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.watchPosition(showPosition);
-    } else { 
-      x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-  }
-      
-  function showPosition(position) {
-      x.innerHTML="Latitude: " + position.coords.latitude + 
-      "<br>Longitude: " + position.coords.longitude;*/
 </script>
 
 <script>
@@ -319,7 +306,6 @@ if (!$_SESSION['name']) {
     document.getElementById("longitude").value = longitude;
     var gmap = `https://maps.google.com/?q=${latitude},${longitude}`
     var gmapwith = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=34.059808,-118.368152`
-    document.getElementById("location").innerHTML = `<a href=${gmapwith} target=_blank> Google Map </a>`
   }
 </script>
 

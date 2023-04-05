@@ -18,20 +18,6 @@
     <link rel="stylesheet" href="./assets/fonts/material-icon/css/material-design-iconic-font.min.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="./assets/css/style.css">
-    
-    
-    <script type="text/javascript" src="https://otpless.com/auth.js"></script>
-    <!-- Get user's whatsapp number and name -->
-
-    <script type="text/javascript">
-        function otpless(otplessUser) {
-            var waName = otplessUser.waName;
-            var waNumber = otplessUser.waNumber;
-            // Signup/signin the user and redirect to next page
-            console.log(waName);
-            console.log(waNumber);
-        }
-    </script>
 
     <script type="text/javascript">
         //password match

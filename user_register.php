@@ -7,10 +7,7 @@
     <title>Owner Registration</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/styles.css">
-    <link rel="shortcut icon" href="./assets/images/car-care.png" type="image/x-icon"/>
-
-    <script type="text/javascript" src="https://otpless.com/auth.js"></script>
-    <!-- Get user's whatsapp number and name -->
+    <link rel="shortcut icon" href="./assets/images/car-care.png" type="image/x-icon" />
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="./assets/fonts/material-icon/css/material-design-iconic-font.min.css">
@@ -19,24 +16,6 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 
     <script type="text/javascript">
-        function otpless(otplessUser) {
-            var waName = otplessUser.waName;
-            var waNumber = otplessUser.waNumber;
-            // Signup/signin the user and redirect to next page
-        }
-    </script>
-
-    <script type="text/javascript">
-        //password match
-        function Validate() {
-            var password = document.getElementById("password").value;
-            var confirmPassword = document.getElementById("confirm_password").value;
-            if (password != confirmPassword) {
-                alert("Passwords do not match.");
-                return false;
-            }
-            return true;
-        }
         //password checkbox
         function showPassword() {
             var x = document.getElementById("password");
@@ -47,12 +26,21 @@
             }
         }
     </script>
-    <?php 
+    <?php
     session_start();
-    if(isset($_SESSION['name'])){
+    if (isset($_SESSION['name'])) {
         header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
     }
     ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.js" integrity="sha512-6DC1eE3AWg1bgitkoaRM1lhY98PxbMIbhgYCGV107aZlyzzvaWCW1nJW2vDuYQm06hXrW0As6OGKcIaAVWnHJw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <style>
+        .phError, .otpError{
+            display: none;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -69,10 +57,9 @@
                 </a>
                 <div class="menu">
                     <ul class="mb-0">
-                        <li><a href="/"> HOME</a></li>
-                        <li><a href=""> SERVICES</a></li>
-                        <li><a href=""> CONTACT</a></li>
-                        <li><a href=""> SEARCH</a></li>
+                        <li><a href="./index.php"> HOME</a></li>
+                        <li><a href="./uncode/services.php"> SERVICES</a></li>
+                        <li><a href="./uncode/contact.php"> CONTACT</a></li>
                     </ul>
                 </div>
             </div>
@@ -82,24 +69,27 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Owner</h2>
-                        <form name="my" method="POST" action="./backend/user_register_back.php" onclick="return ValidateForm()">
+                        <form name="my" id="user_registration_form" method="POST" action="./backend/user_register_back.php">
                             <div class="form-group">
                                 <input type="text" name="name" id="name" placeholder="Name" />
                             </div>
                             <div class="form-group">
                                 <div class="d-flex">
-                                    <input type="tel" name="mob_num" id="email" maxlength="10" placeholder="Phone Number" />
-                                    <button type="button" class="btn btn-secondary" style="font-size: 8px;">
+                                    <input type="tel" name="mob_num" id="mob_num" maxlength="10" placeholder="Phone Number" />
+                                    <button type="button" class="btn btn-secondary" style="font-size: 8px;" onclick="sendOTP()">
                                         Get OTP
                                     </button>
                                 </div>
+                                <p class="phError" style="color:red; margin-left: 20px; font-size: 12px; margin-top: 5px;"></p>
                             </div>
                             <div class="form-group">
                                 <input type="password" name="otp" id="pass" placeholder="OTP" />
+                                <p class="otpError" style="color:red; margin-left: 20px; font-size: 12px; margin-top: 5px;"></p>
                             </div>
                             <div class="form-group form-button">
-                                <input class="form-submit" type="submit" id="btnsubmit" name="user_form_submit" value="Register" onclick="return Validate()" />
+                                <input class="form-submit" type="button" value="Register" onclick="return verifyOTP()" />
                             </div>
+                            <input class="form-submit" id="verifiedOTP" name="verifiedOTP" hidden="true"/>
                         </form>
                     </div>
                     <div class="signup-image">
@@ -156,53 +146,61 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 
 <script>
+    var otp = generateOTP();
     function sendOTP() {
-        $(".error").html("").hide();
-        var number = $("#mobile").val();
+        $(".phError").html("").hide();
+        var name = $("#name").val();
+        var number = $("#mob_num").val();
         if (number.length == 10 && number != null) {
-            var input = {
-                "mobile_number": number,
-                "action": "send_otp"
-            };
-            $.ajax({
-                url: 'controller.php',
-                type: 'POST',
-                data: input,
-                success: function(response) {
-                    $(".container").html(response);
+            var xhr = new XMLHttpRequest(),
+                body = JSON.stringify({
+                    "messages": [{
+                            "channel": "whatsapp",
+                            "to": "91"+number,
+                            "content": `Hello ${name}! - Here's OTP for Quick Mechanist. Please don't share the OTP - ${otp}`
+                        },
+                        {
+                            "channel": "sms",
+                            "to": "91"+number,
+                            "content": `Hello ${name}! - Here's OTP for Quick Mechanist. Please don't share the OTP - ${otp}`
+                        }
+                    ]
+                });
+            xhr.open('POST', 'https://platform.clickatell.com/v1/message', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('Authorization', 'aGvBybhRR0eNevM7QqSU1g==');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log('success');
+                    alert("OTP Sent Successfully!!")
                 }
-            });
+            };
+            xhr.send(body);
         } else {
-            $(".error").html('Please enter a valid number!')
-            $(".error").show();
+            $(".phError").html('Please enter a valid number!')
+            $(".phError").show();
         }
     }
 
+    function generateOTP() {
+        var digits = '0123456789';
+        let OTP = '';
+        for (let i = 0; i < 4; i++) {
+            OTP += digits[Math.floor(Math.random() * 10)];
+        }
+        return OTP;
+    }
+
     function verifyOTP() {
-        $(".error").html("").hide();
-        $(".success").html("").hide();
-        var otp = $("#mobileOtp").val();
-        var input = {
-            "otp": otp,
-            "action": "verify_otp"
-        };
-        if (otp.length == 6 && otp != null) {
-            $.ajax({
-                url: 'controller.php',
-                type: 'POST',
-                dataType: "json",
-                data: input,
-                success: function(response) {
-                    $("." + response.type).html(response.message)
-                    $("." + response.type).show();
-                },
-                error: function() {
-                    alert("ss");
-                }
-            });
+        $(".otpError").html("").hide();
+        var enteredOtp = $("#pass").val();
+        if (enteredOtp == otp) {
+            document.getElementById("verifiedOTP").value = otp;
+            document.getElementById("user_registration_form").submit();
         } else {
-            $(".error").html('You have entered wrong OTP.')
-            $(".error").show();
+            $(".otpError").html('Invalid OTP!')
+            $(".otpError").show();
+            return false;
         }
     }
 </script>
