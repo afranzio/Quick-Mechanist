@@ -32,7 +32,7 @@
 <body>
     <div class="container">
         <div class="form" align="center">
-            <form name="my" method="POST" action="user_register_back.php" onclick="return ValidateForm()">
+            <form name="my" method="POST" action="./backend/user_register_back.php" onclick="return ValidateForm()">
                 <table>
                     <tr>
                         <td class="text">

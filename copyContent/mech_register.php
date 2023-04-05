@@ -74,7 +74,7 @@
 <body>
 	<div class="container">
 		<div class="form" align="center">
-		<form method="POST" action="mech_register_back.php">
+		<form method="POST" action="./backend/mech_register_back.php">
 			<table>
 				<tr>
 					<td class="text">

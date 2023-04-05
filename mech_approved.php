@@ -15,7 +15,9 @@
     $vehicle_problem = $_POST['vehicle_problem'];
     $sql = "INSERT INTO mech_approved(order_id,user_name,approved_mech_name,mech_mobile_num,vehicle_type,vehicle_problem,location,order_status) 
     VALUES ('$order_id','$user_name','$mech_name','$mech_mobile_num','$vehicle_type','$vehicle_problem','$location','APPROVED')";
-    $sql_user_req = "UPDATE `user_booking_request` SET `request_status` = 'APPROVED' WHERE `user_booking_request`.`order_id` = $order_id;";
+
+    $sql_user_req = "UPDATE `user_booking_request` SET `request_status` = 'APPROVED', `approved_mech_name` = '$mech_name' WHERE `user_booking_request`.`order_id` = $order_id;";
+
     if (mysqli_query($conn, $sql) && mysqli_query($conn, $sql_user_req)) {
       echo "<script>
           alert('order approved');

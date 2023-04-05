@@ -81,7 +81,7 @@
 				<div class="signup-content">
 					<div class="signup-form">
 						<h2 class="form-title">Mechanic</h2>
-						<form name="my" method="POST" action="mech_register_back.php">
+						<form name="my" method="POST" action="./backend/mech_register_back.php">
 							<div class="form-group">
 								<input type="text" name="name" id="name" placeholder="Name" />
 							</div>

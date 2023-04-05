@@ -82,7 +82,7 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Owner</h2>
-                        <form name="my" method="POST" action="user_register_back.php" onclick="return ValidateForm()">
+                        <form name="my" method="POST" action="./backend/user_register_back.php" onclick="return ValidateForm()">
                             <div class="form-group">
                                 <input type="text" name="name" id="name" placeholder="Name" />
                             </div>

@@ -85,7 +85,7 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Mechanic-Login</h2>
-                        <form method="POST" action="mech_login_back.php">
+                        <form method="POST" action="./backend/mech_login_back.php">
                             <div class="form-group">
                                 <div class="d-flex">
                                     <input type="tel" name="mob_num" id="email" placeholder="Phone Number" />
