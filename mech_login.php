@@ -51,7 +51,7 @@
         if ($result->num_rows > 0) {
             header("Location: https://localhost/Quick-Mechanist/mech_dashboard.php");
         }else{
-            if(session_id() == '') {
+            if( empty(session_id()) && !headers_sent()){
                 session_start();
             }
             Session_destroy();

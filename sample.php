@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost";
+$servername = "repairspot";
 $username = "root";
 $password = "";
 $dbname ="Quick Mechanist";

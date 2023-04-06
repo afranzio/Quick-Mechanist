@@ -1,6 +1,6 @@
 <?php
 // Create connection
-$conn = mysqli_connect("localhost","root","","repairspot");
+$conn = mysqli_connect("repairspot","root","","repairspot");
 // Check connection
 if (!$conn) 
 {

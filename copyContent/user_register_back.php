@@ -2,7 +2,7 @@
 if(isset($_POST['user_form_submit']))
 {
 // Create connection
-$conn = mysqli_connect("localhost","root","","repairspot");
+$conn = mysqli_connect("repairspot","root","","repairspot");
 // Check connection
 if (!$conn) 
 {

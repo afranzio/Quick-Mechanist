@@ -41,7 +41,9 @@
         }
     </script>
     <?php
-    session_start();
+    if( empty(session_id()) && !headers_sent()){
+        session_start();
+    }
     if (isset($_SESSION['name'])) {
         // Create connection
         $conn = mysqli_connect("localhost", "root", "", "repairspot");
@@ -56,7 +58,7 @@
         if ($result->num_rows > 0) {
             header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
         }else{
-            if(session_id() == '') {
+            if( empty(session_id()) && !headers_sent()){
                 session_start();
             }
             Session_destroy();
