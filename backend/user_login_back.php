@@ -10,8 +10,6 @@
 
    //if submit triggers..
     
-  if (isset($_POST['submit']))
-   {
     $mob_num=$_POST['mob_num'];
     $query="select * from user_details where mob_num='$mob_num'";
     $result=mysqli_query($conn,$query);
@@ -39,7 +37,5 @@
    {
     echo "Invalid User";
     mysqli_close($conn);
-   }
-
    }
 ?>

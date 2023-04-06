@@ -5,6 +5,7 @@ session_start();
 if (!$_SESSION['name']) {
 	header("Location: https://localhost/Quick-Mechanist/");
   }
+  include('backend/radius_calculator.php');
 ?>
 <html>
 
@@ -109,7 +110,8 @@ if (!$_SESSION['name']) {
 							if ($row) {
 								$gmapwith = "https://www.google.com/maps/dir/?api=1&origin=".$_SESSION['latitude'].",".$_SESSION['longitude']."&destination=" . $row['latitude'] . "," . $row['longitude'] . "";
 								$actionButton = $row["request_status"] == 'APPROVED'? "<button type='submit' class='btn btn-danger rounded-0' name='mech_cancel_action'>Cancel</button>" : "<button type='submit' class='btn btn-success rounded-0' name='mech_approve_action'>Approve</button>";
-								echo "<tr> <td><input class='tableInput' type='text' name='order_id' value='" . $row["order_id"] . "' /></td> <td>" . $row["last_updated"] . "</td> <td><input class='tableInput' type='text' name='user_name' value='" . $row["name"] . "' /></td> <td><textarea class='tableInput' type='text' name='user_request_place'>" . $row["user_request_place"] . "</textarea></td> <td><input class='tableInput' type='text' name='vehicle_type' value='" . $row["vehicle_type"] . "' /></td> <td><input class='tableInput' type='text' name='vehicle_problem' value='" . $row["vehicle_problem"] . "' /></td> <td><a href='".$gmapwith."' target=_blank> Google Map </a></td> <td>". $actionButton ."</td> </tr>";
+								$distance = haversineGreatCircleDistance($_SESSION['latitude'], $_SESSION['longitude'], $row['latitude'], $row['longitude']);
+								echo "<tr> <td><input class='tableInput' type='text' name='order_id' value='" . $row["order_id"] . "' /></td> <td>" . $row["last_updated"] . "</td> <td><input class='tableInput' type='text' name='user_name' value='" . $row["name"] . "' /></td> <td><textarea class='tableInput' type='text' name='user_request_place'>" . $row["user_request_place"] . "</textarea></td> <td><input class='tableInput' type='text' name='vehicle_type' value='" . $row["vehicle_type"] . "' /></td> <td><input class='tableInput' type='text' name='vehicle_problem' value='" . $row["vehicle_problem"] . "' /></td> <td>". "$distance[0] $distance[1]" ."<br><a href='".$gmapwith."' target=_blank> Google Map </a></td> <td>". $actionButton ."</td> </tr>";
 							}
 						}
 						echo "</table>";

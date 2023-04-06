@@ -1,6 +1,4 @@
 <?php
-if(isset($_POST['mech_form_submit']))
-{
 // Create connection
 $conn = mysqli_connect("localhost","root","","repairspot");
 // Check connection
@@ -25,6 +23,13 @@ $result = $conn->query($validationSql);
       header("Location: https://localhost/Quick-Mechanist/index.php");
     }
   }else{
+    $validationSql = "SELECT * FROM mech_details WHERE name=$name AND mob_num=$mob_num";
+  $result = $conn->query($validationSql);
+  if ($result) {  
+    if ($result->num_rows == 1) {
+      header("Location: https://localhost/Quick-Mechanist/index.php");
+    }
+  }else{
     $sql = "INSERT INTO mech_details(name, service_type, service_type_others, mob_num, otp, latitude, longitude)
     VALUES ('$name', '$service_type', '$service_type_others', '$mob_num', '$otp', '$latitude', '$longitude')";
 
@@ -43,6 +48,6 @@ $result = $conn->query($validationSql);
       echo "error";
     }
     mysqli_close($conn);
+    }  
     }
   }
-}

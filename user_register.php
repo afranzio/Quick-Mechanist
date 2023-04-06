@@ -153,19 +153,21 @@
         var number = $("#mob_num").val();
         if (number.length == 10 && number != null) {
             var xhr = new XMLHttpRequest(),
-                body = JSON.stringify({
-                    "messages": [{
-                            "channel": "whatsapp",
-                            "to": "91"+number,
-                            "content": `Hello ${name}! - Here's OTP for Quick Mechanist. Please don't share the OTP - ${otp}`
-                        },
-                        {
-                            "channel": "sms",
-                            "to": "91"+number,
-                            "content": `Hello ${name}! - Here's OTP for Quick Mechanist. Please don't share the OTP - ${otp}`
-                        }
-                    ]
-                });
+            body = JSON.stringify({
+                "messages": [{
+                        "channel": "whatsapp",
+                        // "to": "91"+number,
+                        "to": "919944622435",
+                        "content": `Hello ${name}! - Here's OTP for Quick Mechanist. Please don't share the OTP - ${otp}`
+                    },
+                    {
+                        "channel": "sms",
+                        // "to": "91"+number,
+                        "to": "919944622435",
+                        "content": `Hello ${name}! - Here's OTP for Quick Mechanist. Please don't share the OTP - ${otp}`
+                    }
+                ]
+            });
             xhr.open('POST', 'https://platform.clickatell.com/v1/message', true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.setRequestHeader('Authorization', 'aGvBybhRR0eNevM7QqSU1g==');
