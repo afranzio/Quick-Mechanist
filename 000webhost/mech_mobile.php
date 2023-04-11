@@ -1,5 +1,5 @@
 <?php
- $conn=mysqli_connect("localhost","id20568145_root","v2kA?9BB)r-{Qg[1","id20568145_repairspot");   
+ $conn=mysqli_connect("localhost","root","","repairspot");   
   if (!$conn)
   {
    die(" connection failed".mysqli_connect_error());

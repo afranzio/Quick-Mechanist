@@ -1,6 +1,6 @@
 <?php
 // Create connection
-$conn = mysqli_connect("id20568145_repairspot","id20568145_root","","repairspot");
+$conn = mysqli_connect("repairspot","root","","repairspot");
 // Check connection
 if (!$conn) 
 {
@@ -11,6 +11,6 @@ if (!$conn)
 if (mysqli_query($conn,$sql)) 
 {
   echo "order id".$order_id."is cancelled successfull";
-  header("Location: /user_dashboard.php");
+  header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
 }
 ?>

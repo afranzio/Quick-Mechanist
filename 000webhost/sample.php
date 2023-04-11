@@ -1,6 +1,6 @@
 <?php
-$servername = "id20568145_repairspot";
-$username = "id20568145_root";
+$servername = "repairspot";
+$username = "root";
 $password = "";
 $dbname ="Quick Mechanist";
 

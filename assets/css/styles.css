@@ -176,4 +176,8 @@
     .menu, .menu ul{
       width: 100%;
     }
+
+    .menuList {
+      padding-left: 0 !important;
+    }
  }

@@ -46,7 +46,7 @@
     }
     if (isset($_SESSION['name'])) {
         // Create connection
-        $conn = mysqli_connect("localhost", "id20568145_root", "v2kA?9BB)r-{Qg[1", "id20568145_repairspot");
+        $conn = mysqli_connect("localhost", "root", "", "repairspot");
         // Check connection
         if (!$conn) {
             die("Connection failed" . mysqli_connect_error());
@@ -56,7 +56,7 @@
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            header("Location: /user_dashboard.php");
+            header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
         }else{
             if( empty(session_id()) && !headers_sent()){
                 session_start();
@@ -104,7 +104,7 @@
                         <figure>
                             <img src="./assets/images/undraw_bike_ride.svg" alt="sing up image">
                         </figure>
-                        <a href="/mech_login.php" class="signup-image-link">Mechanic Login</a>
+                        <a href="https://localhost/Quick-Mechanist/mech_login.php" class="signup-image-link">Mechanic Login</a>
                     </div>
                 </div>
             </div>

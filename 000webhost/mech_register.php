@@ -137,7 +137,7 @@
 							<img src="./assets/images/undraw_automobile_repair.svg" alt="sing up image">
 							<!-- <img src="./assets/images/signup-image.jpg" alt="sing up image"> -->
 						</figure>
-						<a href="/user_register.php" class="signup-image-link">Owner Register</a>
+						<a href="https://localhost/Quick-Mechanist/user_register.php" class="signup-image-link">Owner Register</a>
 					</div>
 				</div>
 			</div>
