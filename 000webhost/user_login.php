@@ -56,7 +56,7 @@
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
+            header("Location: /user_dashboard.php");
         }else{
             if( empty(session_id()) && !headers_sent()){
                 session_start();
@@ -104,7 +104,7 @@
                         <figure>
                             <img src="./assets/images/undraw_bike_ride.svg" alt="sing up image">
                         </figure>
-                        <a href="https://localhost/Quick-Mechanist/mech_login.php" class="signup-image-link">Mechanic Login</a>
+                        <a href="/mech_login.php" class="signup-image-link">Mechanic Login</a>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <?php
  //db connection
 
- $conn=mysqli_connect("databases-auth.000webhost.com","id20568145_root","v2kA?9BB)r-{Qg[1","id20568145_repairspot");
+ $conn=mysqli_connect("localhost","id20568145_root","v2kA?9BB)r-{Qg[1","id20568145_repairspot");
  
   if (!$conn)
   {
@@ -22,8 +22,10 @@
 
     if (mysqli_num_rows($result)>0)
     {
-      header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
-      session_start();
+      header("Location: /user_dashboard.php");
+      if( empty(session_id()) && !headers_sent()){
+        session_start();
+      }
       $_SESSION["name"] = $row['name'];
       $_SESSION["mob_num"] = $row['mob_num'];
       $_SESSION["otp"] = $row['otp'];

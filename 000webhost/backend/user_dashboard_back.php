@@ -21,7 +21,7 @@
       if (mysqli_query($conn,$query))
       {
           echo "request success";
-          header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
+          header("Location: /user_dashboard.php");
 
       }
 

@@ -23,9 +23,9 @@
                 </a>
                 <div class="menu">
                     <ul class="mb-0">
-                        <li><a href="./index.php"> HOME</a></li>
-                        <li><a href="./uncode/services.php"> SERVICES</a></li>
-                        <li><a href="./uncode/contact.php"> CONTACT</a></li>
+                        <li><a href="/index.php"> HOME</a></li>
+                        <li><a href="/uncode/services.php"> SERVICES</a></li>
+                        <li><a href="/uncode/contact.php"> CONTACT</a></li>
                         <?php
                         if( empty(session_id()) && !headers_sent()){
                             session_start();

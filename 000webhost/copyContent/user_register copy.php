@@ -37,9 +37,11 @@
         }
     </script>
     <?php 
-    session_start();
+    if( empty(session_id()) && !headers_sent()){
+        session_start();
+    }
     if(isset($_SESSION['name'])){
-        header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
+        header("Location: /user_dashboard.php");
     }
     ?>
 </head>
@@ -95,7 +97,7 @@
                         <figure>
                             <img src="./assets/images/undraw_automobile_repair.svg" alt="sing up image">
                         </figure>
-                        <a href="https://localhost/Quick-Mechanist/mech_register.php" class="signup-image-link">Register as Mechanic</a>
+                        <a href="/mech_register.php" class="signup-image-link">Register as Mechanic</a>
                     </div>
                 </div>
             </div>

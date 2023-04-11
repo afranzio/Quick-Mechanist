@@ -1,9 +1,11 @@
 <?php
 session_cache_limiter('private, must-revalidate');
 session_cache_expire(120);
-session_start();
+if( empty(session_id()) && !headers_sent()){
+  session_start();
+}
 if (!$_SESSION['name']) {
-  header("Location: https://localhost/Quick-Mechanist/");
+  header("Location: /");
 }
 ?>
 <!DOCTYPE html>

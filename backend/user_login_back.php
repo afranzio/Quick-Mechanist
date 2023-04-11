@@ -1,7 +1,7 @@
 <?php
  //db connection
 
- $conn=mysqli_connect("databases-auth.000webhost.com","root","","repairspot");
+ $conn=mysqli_connect("localhost","root","","repairspot");
  
   if (!$conn)
   {
