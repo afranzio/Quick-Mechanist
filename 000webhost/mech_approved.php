@@ -1,6 +1,6 @@
 <?php {
   // Create connection
-  $conn = mysqli_connect("localhost", "root", "", "repairspot");
+  $conn = mysqli_connect("localhost", "id20568145_root", "Admin#$6264", "id20568145_repairspot");
   // Check connection
   if (!$conn) {
     die("Connection failed" . mysqli_connect_error());

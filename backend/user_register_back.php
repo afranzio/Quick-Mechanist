@@ -23,7 +23,9 @@ if (!$conn) {
     
     if (mysqli_query($conn, $sql)) {
       header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
-      session_start();
+      if( empty(session_id()) && !headers_sent()){
+        session_start();
+      }
       $_SESSION["name"] = $name;
       $_SESSION["mob_num"] = $mob_num;
       $_SESSION["otp"] = $otp;

@@ -1,7 +1,9 @@
 <?php
 session_cache_limiter('private, must-revalidate');
 session_cache_expire(120);
-session_start();
+if( empty(session_id()) && !headers_sent()){
+  session_start();
+}
 if (!$_SESSION['name']) {
   header("Location: https://localhost/Quick-Mechanist/");
 }
@@ -218,7 +220,7 @@ if (!$_SESSION['name']) {
         <form method="POST" action="user_cancel.php">
           <?php {
             // Create connection
-            $conn = mysqli_connect("localhost", "root", "", "repairspot");
+            $conn = mysqli_connect("localhost", "id20568145_root", "Admin#$6264", "id20568145_repairspot");
             // Check connection
             if (!$conn) {
               die("Connection failed" . mysqli_connect_error());
@@ -247,7 +249,7 @@ if (!$_SESSION['name']) {
         <form method="POST" action="">
           <?php {
             // Create connection
-            $conn = mysqli_connect("localhost", "root", "", "repairspot");
+            $conn = mysqli_connect("localhost", "id20568145_root", "Admin#$6264", "id20568145_repairspot");
             // Check connection
             if (!$conn) {
               die("Connection failed" . mysqli_connect_error());
@@ -276,7 +278,7 @@ if (!$_SESSION['name']) {
         <h2>ORDER HISTORY</h2>
         <?php {
           // Create connection
-          $conn = mysqli_connect("localhost", "root", "", "repairspot");
+          $conn = mysqli_connect("localhost", "id20568145_root", "Admin#$6264", "id20568145_repairspot");
           // Check connection
           if (!$conn) {
             die("Connection failed" . mysqli_connect_error());

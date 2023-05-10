@@ -23,7 +23,9 @@
     if (mysqli_num_rows($result)>0)
     {
       header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
-      session_start();
+      if( empty(session_id()) && !headers_sent()){
+        session_start();
+      }
       $_SESSION["name"] = $row['name'];
       $_SESSION["mob_num"] = $row['mob_num'];
       $_SESSION["otp"] = $row['otp'];

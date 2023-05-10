@@ -27,14 +27,15 @@
         }
     </script>
     <?php
-    session_start();
+    if( empty(session_id()) && !headers_sent()){
+        session_start();
+    }
     if (isset($_SESSION['name'])) {
         header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
     }
     ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.js" integrity="sha512-6DC1eE3AWg1bgitkoaRM1lhY98PxbMIbhgYCGV107aZlyzzvaWCW1nJW2vDuYQm06hXrW0As6OGKcIaAVWnHJw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <style>
         .phError, .otpError{
             display: none;

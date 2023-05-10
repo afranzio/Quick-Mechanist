@@ -37,7 +37,9 @@
         }
     </script>
     <?php 
-    session_start();
+    if( empty(session_id()) && !headers_sent()){
+        session_start();
+    }
     if(isset($_SESSION['name'])){
         header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
     }

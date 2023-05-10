@@ -1,7 +1,9 @@
 <?php
 session_cache_limiter('private, must-revalidate');
 session_cache_expire(61200);
-session_start();
+if( empty(session_id()) && !headers_sent()){
+	session_start();
+}
 if (!$_SESSION['name']) {
 	header("Location: https://localhost/Quick-Mechanist/");
 }
@@ -80,7 +82,7 @@ include('backend/radius_calculator.php');
 				<input type="hidden" name="mech_mobile_num" VALUE="<?Php echo $_SESSION['mob_num']; ?>">
 				<?php {
 					// Create connection
-					$conn = mysqli_connect("localhost", "root", "", "repairspot");
+					$conn = mysqli_connect("localhost", "id20568145_root", "Admin#$6264", "id20568145_repairspot");
 					// Check connection
 					if (!$conn) {
 						die("Connection failed" . mysqli_connect_error());
@@ -118,7 +120,7 @@ include('backend/radius_calculator.php');
 				<input type="hidden" name="mech_mobile_num" VALUE="<?Php echo $_SESSION['mob_num']; ?>">
 				<?php {
 					// Create connection
-					$conn = mysqli_connect("localhost", "root", "", "repairspot");
+					$conn = mysqli_connect("localhost", "id20568145_root", "Admin#$6264", "id20568145_repairspot");
 					// Check connection
 					if (!$conn) {
 						die("Connection failed" . mysqli_connect_error());

@@ -36,7 +36,9 @@ $result = $conn->query($validationSql);
     if(mysqli_query($conn,$sql)){
       // echo "success";
       header("Location: https://localhost/Quick-Mechanist/mech_dashboard.php");
-      session_start();
+      if( empty(session_id()) && !headers_sent()){
+        session_start();
+      }
       $_SESSION['name']=$name;
       $_SESSION['service_type']=$service_type;
       $_SESSION['service_type_others']=$service_type_others;
