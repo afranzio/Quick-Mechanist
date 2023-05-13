@@ -324,6 +324,7 @@ if (!$_SESSION['name']) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showLocation);
     } else {
+      alert("Please allow access to geolocation");
       $('#location').html('Geolocation is not supported by this browser.');
     }
   });
