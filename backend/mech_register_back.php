@@ -20,14 +20,14 @@ $validationSql = "SELECT * FROM mech_details WHERE name=$name AND mob_num=$mob_n
 $result = $conn->query($validationSql);
   if ($result) {  
     if ($result->num_rows == 1) {
-      header("Location: https://localhost/Quick-Mechanist/index.php");
+      header("Location: /index.php");
     }
   }else{
     $validationSql = "SELECT * FROM mech_details WHERE name=$name AND mob_num=$mob_num";
   $result = $conn->query($validationSql);
   if ($result) {  
     if ($result->num_rows == 1) {
-      header("Location: https://localhost/Quick-Mechanist/index.php");
+      header("Location: /index.php");
     }
   }else{
     $sql = "INSERT INTO mech_details(name, service_type, service_type_others, mob_num, otp, latitude, longitude)
@@ -35,7 +35,7 @@ $result = $conn->query($validationSql);
 
     if(mysqli_query($conn,$sql)){
       // echo "success";
-      header("Location: https://localhost/Quick-Mechanist/mech_dashboard.php");
+      header("Location: /mech_dashboard.php");
       if( empty(session_id()) && !headers_sent()){
         session_start();
       }

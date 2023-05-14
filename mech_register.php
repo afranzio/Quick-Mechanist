@@ -137,7 +137,7 @@
 							<img src="./assets/images/undraw_automobile_repair.svg" alt="sing up image">
 							<!-- <img src="./assets/images/signup-image.jpg" alt="sing up image"> -->
 						</figure>
-						<a href="https://localhost/Quick-Mechanist/user_register.php" class="signup-image-link">Owner Register</a>
+						<a href="/user_register.php" class="signup-image-link">Owner Register</a>
 					</div>
 				</div>
 			</div>
@@ -197,8 +197,7 @@
 			xhr.setRequestHeader('Content-Type', 'application/json');
 			xhr.setRequestHeader('Authorization', 'aGvBybhRR0eNevM7QqSU1g==');
 			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4 && xhr.status == 200) {
-					console.log('success');
+				if (xhr.readyState == 4 && ( xhr.status == 200 || xhr.status == 207 )) {
 					alert("OTP Sent Successfully!!")
 				}
 			};

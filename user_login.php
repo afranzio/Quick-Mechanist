@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Owner Signin</title>
 
-    <link rel="shortcut icon" href="./assets/images/car-care.png" type="image/x-icon"/>
+    <link rel="shortcut icon" href="./assets/images/car-care.png" type="image/x-icon" />
 
-    
+
     <!-- Styles and Fonts -->
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
@@ -41,7 +41,7 @@
         }
     </script>
     <?php
-    if( empty(session_id()) && !headers_sent()){
+    if (empty(session_id()) && !headers_sent()) {
         session_start();
     }
     if (isset($_SESSION['name'])) {
@@ -52,13 +52,13 @@
             die("Connection failed" . mysqli_connect_error());
         }
         $name = $_SESSION['name'];
-        $sql = "SELECT * FROM user_details where mob_num='".$_SESSION['mob_num']."'";
+        $sql = "SELECT * FROM user_details where mob_num='" . $_SESSION['mob_num'] . "'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
-        }else{
-            if( empty(session_id()) && !headers_sent()){
+            header("Location: /user_dashboard.php");
+        } else {
+            if (empty(session_id()) && !headers_sent()) {
                 session_start();
             }
             Session_destroy();
@@ -96,7 +96,7 @@
                                 <p class="otpError" style="color:red; margin-left: 20px; font-size: 12px; margin-top: 5px;"></p>
                             </div>
                             <div class="form-group form-button">
-                                <input class="form-submit" name="button" type="submit" value="Login" onclick="return verifyOTP()"  />
+                                <input class="form-submit" name="button" type="submit" value="Login" onclick="return verifyOTP()" />
                             </div>
                         </form>
                     </div>
@@ -104,7 +104,7 @@
                         <figure>
                             <img src="./assets/images/undraw_bike_ride.svg" alt="sing up image">
                         </figure>
-                        <a href="https://localhost/Quick-Mechanist/mech_login.php" class="signup-image-link">Mechanic Login</a>
+                        <a href="/mech_login.php" class="signup-image-link">Mechanic Login</a>
                     </div>
                 </div>
             </div>
@@ -117,6 +117,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 <script>
     var otp = generateOTP();
+
     function sendOTP() {
         $(".phError").html("").hide();
         var number = $("#mob_num").val();
@@ -125,26 +126,26 @@
             body = JSON.stringify({
                 "messages": [{
                         "channel": "whatsapp",
-                        // "to": "91"+number,
+                        //"to": "91"+number,
                         "to": "919944622435",
                         "content": `Hello there! Here's OTP for Quick Mechanist. Please don't share the OTP - ${otp}`
                     },
                     {
                         "channel": "sms",
-                        // "to": "91"+number,
+                        //"to": "91"+number,
                         "to": "919944622435",
                         "content": `Hello there! - Here's OTP for Quick Mechanist. Please don't share the OTP - ${otp}`
                     }
                 ]
             });
+            console.log(body);
             xhr.open('POST', 'https://platform.clickatell.com/v1/message', true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.setRequestHeader('Authorization', 'aGvBybhRR0eNevM7QqSU1g==');
             xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    console.log('success');
-                    alert("OTP Sent Successfully!!")
-                }
+				if (xhr.readyState == 4 && ( xhr.status == 200 || xhr.status == 207 )) {
+					alert("OTP Sent Successfully!!")
+				}
             };
             xhr.send(body);
         } else {
@@ -175,4 +176,5 @@
         }
     }
 </script>
+
 </html>

@@ -31,7 +31,7 @@
         session_start();
     }
     if (isset($_SESSION['name'])) {
-        header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
+        header("Location: /user_dashboard.php");
     }
     ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -58,9 +58,9 @@
                 </a>
                 <div class="menu">
                     <ul class="mb-0">
-                        <li><a href="./index.php"> HOME</a></li>
-                        <li><a href="./uncode/services.php"> SERVICES</a></li>
-                        <li><a href="./uncode/contact.php"> CONTACT</a></li>
+                        <li><a href="/"> HOME</a></li>
+                        <li><a href="/uncode/services.php"> SERVICES</a></li>
+                        <li><a href="/uncode/contact.php"> CONTACT</a></li>
                     </ul>
                 </div>
             </div>
@@ -97,7 +97,7 @@
                         <figure>
                             <img src="./assets/images/undraw_automobile_repair.svg" alt="sing up image">
                         </figure>
-                        <a href="https://localhost/Quick-Mechanist/mech_register.php" class="signup-image-link">Register as Mechanic</a>
+                        <a href="/mech_register.php" class="signup-image-link">Register as Mechanic</a>
                     </div>
                 </div>
             </div>
@@ -173,10 +173,9 @@
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.setRequestHeader('Authorization', 'aGvBybhRR0eNevM7QqSU1g==');
             xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    console.log('success');
-                    alert("OTP Sent Successfully!!")
-                }
+				if (xhr.readyState == 4 && ( xhr.status == 200 || xhr.status == 207 )) {
+					alert("OTP Sent Successfully!!")
+				}
             };
             xhr.send(body);
         } else {

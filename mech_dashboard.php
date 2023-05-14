@@ -5,7 +5,7 @@ if( empty(session_id()) && !headers_sent()){
 	session_start();
 }
 if (!$_SESSION['name']) {
-	header("Location: https://localhost/Quick-Mechanist/");
+	header("Location: /");
 }
 include('backend/radius_calculator.php');
 ?>

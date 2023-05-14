@@ -16,13 +16,13 @@ if (!$conn) {
   $result = $conn->query($validationSql);
   if ($result) {  
     if ($result->num_rows == 1) {
-      header("Location: https://localhost/Quick-Mechanist/index.php");
+      header("Location: /index.php");
     }
   }else{
     $sql = "INSERT INTO user_details(name,otp,mob_num) VALUES ('$name', '$otp', '$mob_num')";
     
     if (mysqli_query($conn, $sql)) {
-      header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
+      header("Location: /user_dashboard.php");
       if( empty(session_id()) && !headers_sent()){
         session_start();
       }

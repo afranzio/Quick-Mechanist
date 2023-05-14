@@ -102,7 +102,7 @@ if(isset($_POST['user_form_submit'])){
 // if(mysqli_query($conn,$sql))
 // {
 // // echo "success";
-// header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
+// header("Location: /user_dashboard.php");
 // session_start();
 // $_SESSION["name"] = $name;
 // $_SESSION["mob_num"] = $mob_num;

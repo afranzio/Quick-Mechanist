@@ -22,7 +22,7 @@
 
     if (mysqli_num_rows($result)>0)
     {
-      header("Location: https://localhost/Quick-Mechanist/user_dashboard.php");
+      header("Location: /user_dashboard.php");
       if( empty(session_id()) && !headers_sent()){
         session_start();
       }
