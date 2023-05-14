@@ -173,10 +173,9 @@
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.setRequestHeader('Authorization', 'aGvBybhRR0eNevM7QqSU1g==');
             xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    console.log('success');
-                    alert("OTP Sent Successfully!!")
-                }
+				if (xhr.readyState == 4 && ( xhr.status == 200 || xhr.status == 207 )) {
+					alert("OTP Sent Successfully!!")
+				}
             };
             xhr.send(body);
         } else {

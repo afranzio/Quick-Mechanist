@@ -196,12 +196,11 @@
 			xhr.open('POST', 'https://platform.clickatell.com/v1/message', true);
 			xhr.setRequestHeader('Content-Type', 'application/json');
 			xhr.setRequestHeader('Authorization', 'aGvBybhRR0eNevM7QqSU1g==');
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4 && xhr.status == 200) {
-					console.log('success');
+            xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && ( xhr.status == 200 || xhr.status == 207 )) {
 					alert("OTP Sent Successfully!!")
 				}
-			};
+            };
 			xhr.send(body);
 		} else {
 			$(".phError").html('Please enter a valid number!')
