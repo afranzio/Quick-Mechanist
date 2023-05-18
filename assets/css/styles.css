@@ -148,6 +148,25 @@
    text-align: center;
  }
 
+ /**
+ * Centered Vertical line with CSS Gradient
+ */
+.verticalSplitter {
+   background: #fff;	
+   background: linear-gradient(180deg, transparent, #353535, transparent);
+   background-position: 50%;
+   background-repeat: repeat-y;
+   background-size: 1px auto;
+}
+
+/* Setup */
+.verticalSplitter {
+   border: 1px solid #ccc;
+   height: 60vh;
+   width: 90%;
+   margin: 0 5rem;
+}
+
  @media only screen and (max-width: 600px) {
     .navbar, .navBarWidth{
        width: 100% !important;
@@ -163,7 +182,8 @@
        margin-left: 0.5rem;
     }
     .link{
-       width: 100%;
+      margin-top: 1rem;
+      width: 100%;
     }
     .link div{
        display: block !important;
@@ -174,10 +194,18 @@
       height: 75px;
     }
     .menu, .menu ul{
+      padding: 0rem;
       width: 100%;
     }
 
     .menuList {
       padding-left: 0 !important;
     }
+
+    .verticalSplitter {
+      border: 1px solid #ccc;
+      height: 0vh;
+      width: 90%;
+      margin: 0 5rem;
+   }
  }

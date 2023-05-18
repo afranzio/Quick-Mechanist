@@ -3,8 +3,11 @@ include('components/header.php');
 ?>
 
 <div class="link d-flex justify-content-center">
-   <div>
-      <div class="d-flex">
+   <div class="d-flex">
+      <div>
+         <h4 class="text-center text-white">
+            New to Quick Mechanist?
+         </h4>
          <a class="noHover" href="user_register.php">
             <button class="btn">REGISTER AS VEHICLE OWNER</button><br>
          </a>
@@ -12,7 +15,11 @@ include('components/header.php');
             <button class="btn">REGISTER AS MECHANIC</button><br>
          </a>
       </div>
-      <div class="d-flex">
+      <div class="verticalSplitter"></div>
+      <div>
+         <h4 class="text-center text-white">
+            Welcome back
+         </h4>
          <a class="noHover" href="user_login.php">
             <button class="btn">VEHICLE OWNER LOGIN</button><br>
          </a>
